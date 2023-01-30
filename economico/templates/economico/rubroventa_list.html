@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container">
+    <div class="card card-primary">
+        <div class="card-header">
+          Rubros de Ventas
+          <!-- <a href="{% url 'economico:rubro-venta-crear' %}" style="margin-left:20px;"><i class="fa fa-plus-square" aria-hidden="true" style="color:#050505; 
+            padding: 2px;"></i></a> -->
+        </div>
+        <div class="card-body">
+            <table id="miTabla" class="display compact" style="font-size: 13px;">
+                {% if object_list %}
+              <thead>
+                  <tr>
+                      <th>Nombre</th>
+                      <th></th>
+                  </tr>
+              </thead>
+              <tbody>
+                  {% for rubro in object_list %}
+                  <tr>
+                      <td>{{rubro.nombre}}</td>
+                      <td>
+                          <a href="{% url 'economico:rubro-venta-edit' rubro.pk %}" class="btn btn-warning btn-xs btn-flat">
+                            <i class="fa fa-edit"></i>
+                          </a>
+                          <a href="{% url 'economico:rubro-venta-delete' rubro.pk %}" class="btn btn-danger btn-xs btn-flat">
+                            <i class="fas fa-trash"></i>
+                          </a>
+                      </td>
+                  </tr>
+                  {% endfor %}
+              </tbody>
+            </table>
+              {% else %}
+            <h6>No se registraron rubros de gastos</h6>
+            {% endif %}
+        </div>
+        <div class="card-footer">
+          <a href="{% url 'economico:rubro-venta-crear' %}" class="btn btn-primary btn-sm">
+            <i class="fas fa-plus"></i> Nuevo rubro
+          </a>
+        </div>
+      </div>
+</div>
+{% endblock %}

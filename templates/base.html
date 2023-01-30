@@ -1,0 +1,222 @@
+{% load static %}
+<!-- <!doctype html><!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> -->
+
+
+<!-- Bootstrap CSS -->
+<!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous"> -->
+
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
+    <meta name="generator" content="Jekyll v4.1.1">
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
+    <!-- Custom styles for this template -->
+    <link rel="stylesheet" href="{% static 'css/mis_estilos.css' %}">
+    <!-- <link href="{% static 'css/estilo.css' %}" rel="stylesheet"> -->
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@300&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Lora:400,400i,700,700i" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300&display=swap" rel="stylesheet">
+    <!-- Font-awesome -->
+    <link rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css"
+    integrity="sha512-HK5fgLBL+xu6dm/Ii3z4xhlSUyZgTT9tuc/hSrtw6uzJOvgRr2a9jyxxT1ely+B+xFAmJKVSTbpM/CuL7qxO8w=="
+    crossorigin="anonymous">
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="{% static 'lib/adminlte-3.0.4/plugins/font-awesome-5.11.1/css/all.min.css' %}">
+    <!-- Theme style -->
+    <link rel="stylesheet" href="{% static 'lib/adminlte-3.0.4/css/adminlte.min.css' %}">
+    <!-- DataTable -->
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.23/css/jquery.dataTables.min.css">
+    <!-- jQuery -->
+    <!-- <script src="{% static 'lib/adminlte-3.0.4/plugins/jquery/jquery.min.js' %}"></script> -->
+    <!-- Bootstrap 4 -->
+    <script src="{% static 'lib/adminlte-3.0.4/plugins/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+    <!-- AdminLTE App -->
+    <script src="{% static 'lib/adminlte-3.0.4/js/adminlte.min.js' %}"></script>
+    <!-- Swetalert -->
+    <script src="{% static 'lib/sweetalert2-9.10.0/sweetalert2.all.min.js' %}"></script>
+    <!-- Jquery Confirm -->
+    <!-- <link rel="stylesheet" href="{% static 'lib/jquery-confirm-v3.3.4/jquery-confirm.min.css' %}">
+    <script src="{% static 'lib/jquery-confirm-v3.3.4/jquery-confirm.min.js' %}"></script> -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.js"></script>
+    <!-- Estilos propios -->
+    <link rel="stylesheet" href="{% static 'css/base.css/' %}">
+    <script src="{% static 'js/functions.js' %}"></script>
+    <title>AgroWeb|{% block title %}{% endblock %}</title>
+  </head> 
+  <body>
+    {% if messages %}
+        {% for message in messages %}
+            <div class="alert alert-{{ message.tags }}">
+                <p style="text-align:center;">{{ message }}</p>
+            </div>
+        {% endfor %}
+    {% endif %}
+    {% if user.is_authenticated %}
+    <div>
+      <p class="titulo">Bienvenid@ {{user}} a la app Agroweb | <a style="color:white;" href="{%url 'salir' %}">Salir</a></p>
+    </div>
+    
+    <nav class="navbar navbar-expand-lg navbar-light bg-light navbar-toggleable-sm sticky-top">
+        <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <a class="navbar-brand" href="#">AgroWeb</a>
+        <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
+        <div class="navbar-nav">
+            
+            <li><a class="" href="{% url 'index' %}">
+              <img class='iconos' src="{% static 'img/inicio1.png'%}">
+            </a>
+            </li>
+            <li class="nav-item dropdown">
+                <a class="" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  <img class='iconos' src="{% static 'img/base.png'%}" data-toggle="tooltip" title="Cofigurar datos">
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                  <a class="dropdown-item" href="{% url 'produccion:alimento' %}">Tipo alimentos</a>
+                  <a class="dropdown-item" href="{% url 'economico:rubro-gasto' %}">Rubros de gastos</a>
+                  <a class="dropdown-item" href="{% url 'economico:rubro-venta' %}">Rubros de ventas</a>
+                  <a class="dropdown-item" href="{% url 'economico:subrubro-gasto' %}">Sub-rubro de gastos</a>
+                  <a class="dropdown-item" href="{% url 'economico:dato-umedida' %}">Unidad de medidas</a>
+                  <a class="dropdown-item" href="{% url 'economico:dato-empleado' %}">Empleados</a>
+                  <a class="dropdown-item" href="{% url 'economico:dato-cliente' %}">Clientes</a>
+                  <a class="dropdown-item" href="{% url 'economico:dato-proveedor' %}">Proveedores</a>
+                </div>
+            </li>
+            <li class="nav-item dropdown">
+              <a class="" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <img class='iconos' src="{% static 'img/datos1.png'%}" data-toggle="tooltip" title="Registrar datos">
+              </a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                <a class="dropdown-item" href="#">Ventas</a>
+                <a class="dropdown-item" href="{% url 'economico:gasto-crear' %}">Gastos</a>
+                <a class="dropdown-item" href="#">Retribución MO</a>
+                <a class="dropdown-item" href="{% url 'produccion:leche-create' %}">Producción Leche</a>
+                <a class="dropdown-item" href="{% url 'produccion:existenciatambo-crear' %}">Rodeo Tambo</a>
+                <a class="dropdown-item" href="#">Rodeo Recría</a>
+              </div>
+            </li>
+            <li class="nav-item dropdown">
+              <a class="" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <img class='iconos' src="{% static 'img/leche1.png'%}">
+              </a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                <a class="dropdown-item" href="{% url 'produccion:leche_list' %}">Producción de leche</a>
+                <a class="dropdown-item" href="{% url 'produccion:existenciatambo-list' %}">Rodeo de Tambo</a>
+              </div>
+          </li>
+            <li></li>
+            <li class="nav-item dropdown">
+                <a class="" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  <img class='iconos' src="{% static 'img/vaca3.jpeg'%}">
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                  
+                  <a class="dropdown-item" href="{% url 'produccion:recria-list' %}">Rodeo de Recría</a>
+                </div>
+              </li>
+              
+              <li class="nav-item dropdown">
+                <a class="" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  <img class='iconos' src="{% static 'img/economico2.jpeg'%}" data-toggle="tooltip" title="Listados de Gastos">
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                  <a class="dropdown-item" href="{% url 'economico:listado-gastos' %}">Todos los Gastos</a>
+                  <a class="dropdown-item" href="{% url 'economico:listado-gastos-alimentacion' %}">Gastos: Alimentación</a>
+                  <a class="dropdown-item" href="{% url 'economico:listado-gastos-sanidad' %}">Gastos: Sanidad y Reproducción</a>
+                  <a class="dropdown-item" href="{% url 'economico:listado-gastos-pasturas' %}">Gastos: Impl.y conserv. de pasturas</a>
+                  <a class="dropdown-item" href="{% url 'economico:listado-gastos-combustibles' %}">Gastos: Comb. y Lubricantes</a>
+                  <a class="dropdown-item" href="{% url 'economico:listado-gastos-estructuras' %}">Gastos: Conserv. de Estructuras</a>
+                  <a class="dropdown-item" href="{% url 'economico:listado-gastos-repmaq' %}">Gastos: Reparación Maquinarias</a>
+                  <a class="dropdown-item" href="{% url 'economico:listado-gastos-servicios' %}">Gastos: Servicios</a>
+                  
+                  <a class="dropdown-item" href="#">Gastos: Personal</a>
+                  
+                </div>
+              </li>
+              <li class="nav-item dropdown">
+                <a class="" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  <img class='iconos' src="{% static 'img/informe.jpg'%}">
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                  <a class="dropdown-item" href="#">Informe de producción</a>
+                  <a class="dropdown-item" href="#">Informe económico </a>
+                </div>
+              </li>
+              <li class="nav-item dropdown">
+                <a class="" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  <img class='iconos' src="{% static 'img/manual1.jpeg'%}">
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                  <a class="dropdown-item" href="#">Manual del usuario</a>
+                </div>
+              </li>
+        </div>
+        </div>
+        </div>
+    </nav>
+    {% endif%}
+
+{% block content %}
+{% endblock %}
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns" crossorigin="anonymous"></script>
+
+    <script src="https://cdn.datatables.net/1.10.23/js/jquery.dataTables.min.js"></script>
+    <script src="//cdn.datatables.net/plug-ins/1.10.24/i18n/Spanish.json"></script>
+    <script>
+      $(document).ready( function () {
+    $('#miTabla').DataTable({
+
+        "language": {
+        "processing": "Procesando...",
+        "lengthMenu": "Mostrar _MENU_ registros",
+        "zeroRecords": "No se encontraron resultados",
+        "emptyTable": "Ningún dato disponible en esta tabla",
+        "infoEmpty": "Mostrando registros del 0 al 0 de un total de 0 registros",
+        "infoFiltered": "(filtrado de un total de _MAX_ registros)",
+        "search": "Buscar:",
+        "infoThousands": ",",
+        "loadingRecords": "Cargando...",
+        "paginate": {
+            "first": "Primero",
+            "last": "Último",
+            "next": "Siguiente",
+            "previous": "Anterior"
+            }
+        }
+     });
+    });
+    </script>
+   
+    <script>
+    $(function () {
+    $('.example-popover').popover({
+    container: 'body',
+    })
+    })
+    </script>
+
+
+{% block extrajs %}
+  
+{% endblock extrajs %}
+</body>
+</html>

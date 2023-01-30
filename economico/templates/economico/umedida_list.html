@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container">
+    <div class="card card-primary">
+        <div class="card-header">
+          Unidades de medidas
+        </div>
+        <div class="card-body">
+            <table id="miTabla" class="display compact" style="font-size: 13px;">
+                {% if object_list %}
+              <thead>
+                  <tr>
+                      <th>Nombre</th>
+                      <th></th>
+                  </tr>
+              </thead>
+              <tbody>
+                  {% for medida in object_list %}
+                  <tr>
+                      <td>{{medida.nombre}}</td>
+                      <td>
+                        <a href="{% url 'economico:dato-umedida-edit' medida.pk %}" class="btn btn-warning btn-xs btn-flat">
+                          <i class="fa fa-edit"></i>
+                        </a>
+                        <a href="{% url 'economico:dato-umedida-delete' medida.pk %}" class="btn btn-danger btn-xs btn-flat">
+                          <i class="fas fa-trash"></i>
+                        </a>
+                    </td>
+                  </tr>
+                  {% endfor %}
+              </tbody>
+            </table>
+              {% else %}
+            <h6>No se registran unidades de medidas</h6>
+            {% endif %}
+        </div>
+      </div>
+      <div class="card-footer">
+        <a href="{% url 'economico:dato-umedida-crear' %}" class="btn btn-primary btn-sm">
+          <i class="fas fa-plus"></i> Nueva Ud. medida
+        </a>
+      </div>
+</div>
+{% endblock %}

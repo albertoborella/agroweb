@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container">
+    <div class="card">
+        <div class="card-header">
+          Categorias de animales
+        </div>
+        <div class="card-body">
+            <table id="miTabla" class="display compact" style="font-size: 13px;">
+                {% if object_list %}
+              <thead>
+                  <tr>
+                      <th>Categoría</th>
+                      <th>Detalle</th>
+                      <th></th>
+                  </tr>
+              </thead>
+              <tbody>
+                  {% for categoria in object_list %}
+                  <tr>
+                      <td>{{categoria.cat}}</td>
+                      <td>{{categoria.det}}</td>
+                      <td>
+                        <a href="{% url 'produccion:catanimal-edit' categoria.pk %}" class="btn btn-warning btn-xs btn-flat">
+                          <i class="fa fa-edit"></i>
+                        </a>
+                        <a href="{% url 'produccion:catanimal-delete' categoria.pk %}" class="btn btn-danger btn-xs btn-flat">
+                          <i class="fas fa-trash"></i>
+                        </a>
+                      </td>
+                  </tr>
+                  {% endfor %}
+              </tbody>
+            </table>
+              {% else %}
+            <h6>No se registraron categorías de animales al sistema</h6>
+            {% endif %}
+        </div>
+      </div>
+      <div class="card-footer">
+        <a href="{% url 'produccion:catanimal-crear' %}" class="btn btn-primary btn-sm">
+          <i class="fas fa-plus"></i> Nuevo Registro
+        </a>
+      </div>
+</div>
+{% endblock %}

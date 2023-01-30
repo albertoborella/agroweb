@@ -1,0 +1,60 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <div class="container">
+    <div class="col-md-8">
+      <form class="form-inline my-2 my-lg-0 pull-right">
+        <label>Fecha inicial</label>
+        <input class="form-control ml-sm-2 mr-sm-2" name="start_date" type="date"/>
+        <label>Fecha final</label>
+        <input class='form-control ml-2 mr-2' name='end_date' type="date"/>
+        <button class="btn btn-primary ml-2 my-sm-0" type="submit">Buscar</button>
+      </form>
+    </div>
+    <div class="card">
+        <div class="card-header">
+          Existencias de Bovinos de Recría
+          <a href="{% url 'produccion:recria-crear' %}" style="margin-left:20px;"><i class="fa fa-plus-square" aria-hidden="true" style="color:#050505; 
+            padding: 2px;"></i></a>
+        </div>
+        <div class="card-body">
+            <table id="miTabla" class="display compact" style="font-size: 13px;">
+                {% if object_list %}
+              <thead>
+                  <tr>
+                      <th>Fecha</th>
+                      <th>Terneros</th>
+                      <th>Recría</th>
+                      <th>Vaquillonas</th>
+                      <th>Vaq.c/Servicio</th>
+                      <th>Novillos</th>
+                      <th>Total</th>
+                      <th></th>
+                  </tr>
+              </thead>
+              <tbody>
+                  {% for r in object_list %}
+                  <tr>
+                      <td>{{r.fecha}}</td>
+                      <td>{{r.terneros}}</td>
+                      <td>{{r.recria}}</td>
+                      <td>{{r.vaq}}</td>
+                      <td>{{r.vaqcserv}}</td>
+                      <td>{{r.nov}}</td>
+                      <td>{{r.rt}}</td>
+                      <td>
+                          <a href="{% url 'produccion:recria-edit' r.pk %}" style="margin-left:20px;"><i class="fa fa-edit" aria-hidden="true" style="color:#050505; 
+                            padding: 2px;"></i></a>
+                          <a href="{% url 'produccion:recria-delete' r.pk %}" style="margin-left:20px;"><i class="fa fa-trash-alt" aria-hidden="true" style="color:#050505; 
+                            padding: 2px;"></i></a>
+                      </td>
+                  </tr>
+                  {% endfor %}
+              </tbody>
+              {% else %}
+            <h6>No se ingresaron registros al sistema</h6>
+            {% endif %}
+        </div>
+      </div>
+</div>
+{% endblock %}

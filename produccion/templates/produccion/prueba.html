@@ -1,0 +1,60 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container">
+  <div class="container">
+    <form method="POST">
+      {% csrf_token %}
+      <table>
+      {{form.as_p}}
+      </table>
+      <button type='submit'>Buscar</button>
+    </form> 
+    
+    <div class="card">
+        <div class="card-header">
+          Produccion diaria de leche
+          <a href="{% url 'produccion:leche-create' %}" style="margin-left:20px;"><i class="fa fa-plus-square" aria-hidden="true" style="color:#050505; 
+            padding: 2px;"></i></a>
+            <span style='padding-left: 30px;'>Litros totales en el período: {{ suma }}</span>
+        </div>
+        
+        <div class="card-body">
+            <table id="miTabla" class="display compact" style="font-size: 13px;">
+                {% if qs %}
+              <thead>
+                  <tr>
+                      <th>Fecha</th>
+                      <th>Venta</th>
+                      <th>Consumo</th>
+                      <th>Total</th>
+                      <th></th>
+                  </tr>
+              </thead>
+              <tbody>
+                  {% for leche in qs %}
+                  <tr>
+                      <td>{{leche.fecha}}</td>
+                      <td>{{leche.venta}}</td>
+                      <td>{{leche.consumo}}</td>
+                      <td>{{leche.lts_total}}</td>
+                      <td>
+                          <a href="{% url 'produccion:leche-edit' leche.pk %}" style="margin-left:20px;"><i class="fa fa-edit" aria-hidden="true" style="color:#050505; 
+                            padding: 2px;"></i></a>
+                          <a href="{% url 'produccion:leche-delete' leche.pk %}" style="margin-left:20px;"><i class="fa fa-trash-alt" aria-hidden="true" style="color:#050505; 
+                            padding: 2px;"></i></a>
+                      </td>
+                  </tr>
+                  {% endfor %}
+              </tbody>
+              
+              {% else %}
+            <h6>No se ingresaron registros al sistema</h6>
+            {% endif %}
+            
+        </div>
+      </div>
+      
+</div>
+
+{% endblock %}

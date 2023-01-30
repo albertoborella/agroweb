@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+{% block title %}Acceder{% endblock %}
+{% block navbar %}{% endblock %}
+
+{% block content %}
+
+<div class="registro" autocomplete=off>
+    <div>
+        <form class="form" action="" method="post">{% csrf_token %}
+            <div class="cab">
+                <p class="tit" style="font-style: italic;">Sistemas-PatacaSis</p>
+            </div>
+            <div class="formulario">
+                {{form|crispy}}
+                <button type="submit" class="btn btn-success">Ingresar</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+{% endblock %}

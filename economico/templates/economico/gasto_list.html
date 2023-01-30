@@ -1,0 +1,60 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container">
+    <div class="card card-primary">
+        <div class="card-header">
+          Registros de Gastos
+          <!-- <a href="{% url 'economico:gasto-crear' %}" style="margin-left:20px;"><i class="fa fa-plus-square" aria-hidden="true" style="color:#050505; 
+            padding: 2px;"></i></a> -->
+        </div>
+        <div class="card-body">
+            <table id="miTabla" class="display compact" style="font-size: 13px;">
+                {% if gastos %}
+              <thead>
+                  <tr>
+                      <th>Fecha</th>
+                      <th>Proveedor</th>
+                      <th>Comprobante</th>
+                      <th>Rubro</th>
+                      <th>Subrubro</th>
+                      <th>Total</th>
+                      <th>Pagado</th>
+                      <th></th>
+                  </tr>
+              </thead>
+              <tbody>
+                  {% for gasto in gastos %}
+                  <tr>
+                      <td>{{gasto.fecha}}</td>
+                      <td>{{gasto.proveedor}}</td>
+                      <td>{{gasto.comprobante}}</td>
+                      <td>{{gasto.rubro}}</td>
+                      <td>{{gasto.subrubro}}</td>
+                      <td>{{gasto.importe_total}}</td>
+                      <td></td>
+                      <td>
+                        <a href="{% url 'economico:gasto-edit' gasto.pk %}" class="btn btn-warning btn-xs btn-flat">
+                          <i class="fa fa-edit"></i>
+                        </a>
+                        <a href="{% url 'economico:gasto-delete' gasto.pk %}" class="btn btn-danger btn-xs btn-flat">
+                          <i class="fas fa-trash"></i>
+                        </a>
+                    </td>
+                  </tr>
+                  {% endfor %}
+              </tbody>
+            </table>
+              {% else %}
+            <h6>No se registran gastos</h6>
+            {% endif %}
+        </div>
+      
+      <div class="card-footer">
+        <a href="{% url 'economico:gasto-crear' %}" class="btn btn-primary btn-sm">
+          <i class="fas fa-plus"></i> Nuevo Registro
+        </a>
+      </div>
+    </div>
+</div>
+{% endblock %}

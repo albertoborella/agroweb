@@ -1,0 +1,75 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container">
+<div class="col-md-8">
+  <form class="form-inline my-2 my-lg-0 pull-right">
+    <label>Fecha inicial</label>
+    <input class="form-control ml-sm-2 mr-sm-2" name="start_date" type="date"/>
+    <label>Fecha final</label>
+    <input class='form-control ml-2 mr-2' name='end_date' type="date"/>
+    <button class="btn btn-primary ml-2 my-sm-0" type="submit">Buscar</button>
+  </form>
+</div>
+
+    <div class="card card-primary">
+        <div class="card-header">
+          Listado de Gastos 
+        </div>
+        <div class="card-body">
+            <table id="miTabla" class="display compact" style="font-size: 13px;">
+                {% if object_list %}
+              <thead>
+                  <tr>
+                    <th>Fecha</th>
+                    <th>Proveedor</th>
+                    <th>Comprobante</th>
+                    <th>Rubro</th>
+                    <th>Subrubro</th>
+                    <th>Total</th>
+                    <th>Pagado</th>
+                    <th></th>
+                  </tr>
+              </thead>
+              <tbody>
+                  {% for gasto in object_list %}
+                  <tr>
+                    <td>{{gasto.fecha}}</td>
+                    <td>{{gasto.proveedor}}</td>
+                    <td>{{gasto.comprobante}}</td>
+                    <td>{{gasto.rubro}}</td>
+                    <td>{{gasto.subrubro}}</td>
+                    <td>{{gasto.importe_total}}</td>
+                    <td></td>
+                      <td>
+                        <a href="{% url 'economico:gasto-edit' gasto.pk %}" class="btn btn-warning btn-xs btn-flat">
+                          <i class="fa fa-edit"></i>
+                        </a>
+                        <a href="{% url 'economico:gasto-delete' gasto.pk %}" class="btn btn-danger btn-xs btn-flat">
+                          <i class="fas fa-trash"></i>
+                        </a>
+                      </td>
+                  </tr>
+                  {% endfor %}
+              </tbody>
+            </table>
+              {% else %}
+            <h6>No se ingresaron registros al sistema</h6>
+            {% endif %}
+        </div>
+        <div class="card-footer">
+          <a href="#" class="btn btn-primary btn-sm">
+            <i class="fas fa-plus"></i> Nuevo Registro
+          </a>
+        </div>
+      </div>
+      
+      <!-- <div class="alert alert-warning">
+       <table>
+        <p style='font-weight: bold; font-family: bold;'>Resumen del período seleccionado</p>
+        <p style='' class="datos">Leche vendida a industria: <span id='litrosv'>{{venta}}</span> litros</p>
+        <p style='' class="datos">Leche para terneros: <span id='litrost'>{{terneros}}</span> litros</p>
+        <p style='' class="datos">Producción total: <span id='litrostot'>{{suma}}</span> litros</p>
+      </table>
+</div> -->
+{% endblock %}

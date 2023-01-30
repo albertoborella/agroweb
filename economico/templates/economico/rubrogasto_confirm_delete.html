@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container" style="margin-top: 15px;">
+<div class="row">
+    <div class="col-md-6">
+        <div class="card">
+            <div class="card-header">
+                Eliminacion del rubro
+            </div>
+            <div class="card-body">
+                <form method="post">{% csrf_token %} 
+                    <p class="card-text">Se eliminara el rubro:"{{ object }}"?</p> 
+                    <input class="btn btn-danger  btn-sm" type="submit" value="Confirmar">
+                    <a class="btn btn-success btn-sm" href="{% url 'economico:rubro-gasto' %}">Cancelar eliminacion</a>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+{% endblock %}

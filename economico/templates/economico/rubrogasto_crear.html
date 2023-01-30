@@ -1,0 +1,18 @@
+<div class="modal-dialog" role="document">
+    <div class="modal-content">
+       <div class="modal-header" style="border-top: 4px solid rgb(216, 216, 10);padding-top: 5px;padding-bottom: 5px;">
+           <h5 class="modal-title">Crear Rubro</h5>
+           <button type="button" class="close" data-dismiss="modal" aria-label="Close" >&times;</button>
+       </div>
+       <form action="{% url 'economico:rubro-gasto-crear' %}" method="post">
+           {% csrf_token %}
+           <div class="modal-body">
+               {{ form.as_p }}
+            </div>
+            <div class="modal-footer" style="padding: top 2px;padding-bottom:2px;">
+                <button class="btn btn-danger btn-sm" type="button" data-dismiss="modal">Cancelar</button>
+                <button class="btn btn-primary btn-sm" type="submit">Confirmar</button>
+            </div>
+       </form>
+    </div>
+   </div>

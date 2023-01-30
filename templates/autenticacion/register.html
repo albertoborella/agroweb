@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+{% block title %}Registro{% endblock %}
+{% block navbar %}{% endblock %}
+
+{% block content %}
+
+<div class="registro" autocomplete=off>
+    <div>
+        <form class="form" action="" method="post">{% csrf_token %}
+            <div class="cab">
+                <p class="tit">SistPataca</p>
+            </div>
+            <div class="formulario">
+                {{form|crispy}}
+                <button type="submit" class="btn btn-success">Registrarse</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+{% endblock %}
